@@ -58,7 +58,7 @@ const Evil_PortalItem items[NUM_MENU_ITEMS] = {
      FOCUS_CONSOLE_START,
      SHOW_STOPSCAN_TIP},
     
-    {"Stop portal", {""}, 1, {LED_CMD}, NO_ARGS, FOCUS_CONSOLE_START, SHOW_STOPSCAN_TIP},
+    {"Toggle LED", {""}, 1, {LED_CMD}, NO_ARGS, FOCUS_CONSOLE_START, SHOW_STOPSCAN_TIP},
 };
 
 static void evil_portal_scene_start_var_list_enter_callback(void *context,
