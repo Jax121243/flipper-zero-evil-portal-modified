@@ -86,6 +86,15 @@ void evil_portal_scene_console_output_on_enter(void *context) {
         app->text_box_store_strlen += strlen(msg);
       }
     }
+
+    if (0 == strncmp(LED_CMD, app->selected_tx_string, strlen(LED_CMD))) {
+      app->sent_led = true;
+      if (app->show_stopscan_tip) {
+        const char *msg = "LED toggled :)\nPress BACK to return\n";
+        furi_string_cat_str(app->text_box_store, msg);
+        app->text_box_store_strlen += strlen(msg);
+      }
+    }
   }
 
   text_box_set_text(app->text_box, furi_string_get_cstr(app->text_box_store));
