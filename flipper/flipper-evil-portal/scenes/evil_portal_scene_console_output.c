@@ -88,7 +88,6 @@ void evil_portal_scene_console_output_on_enter(void *context) {
     }
 
     if (0 == strncmp(LED_CMD, app->selected_tx_string, strlen(LED_CMD))) {
-      app->sent_led = true;
       if (app->show_stopscan_tip) {
         const char *msg = "LED toggled :)\nPress BACK to return\n";
         furi_string_cat_str(app->text_box_store, msg);
