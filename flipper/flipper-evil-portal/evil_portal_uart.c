@@ -72,20 +72,18 @@ static int32_t uart_worker(void *context) {
                 free(uart->app->ap_name);
               }
 
-              if (0 ==
-                  strncmp(LED_CMD,
-                          uart->app->command_queue[uart->app->command_index],
-                          strlen(LED_CMD))) {
-                FuriString *out_data = furi_string_alloc();
-
-                furi_string_cat(out_data, "led");
-
-                evil_portal_uart_tx((uint8_t *)(furi_string_get_cstr(out_data)),
-                                    strlen(furi_string_get_cstr(out_data)));
+              if (0 == strncmp(LED_CMD, uart->app->command_queue[uart->app->command_index], strlen(LED_CMD))) {
+                evil_portal_uart_tx((uint8_t *)(LED_CMD), strlen(LED_CMD));
                 evil_portal_uart_tx((uint8_t *)("\n"), 1);
 
-                free(out_data);
-                free(uart->app->ap_name);
+                furi_assert(app);
+
+                // Views
+                view_dispatcher_remove_view(app->view_dispatcher, Evil_PortalAppViewVarItemList);
+                view_dispatcher_remove_view(app->view_dispatcher, Evil_PortalAppViewConsoleOutput);
+
+                text_box_free(app->text_box);
+                furi_string_free(app->text_box_store);
               }
 
               uart->app->command_index = 0;
