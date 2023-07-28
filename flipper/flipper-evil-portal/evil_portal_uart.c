@@ -75,8 +75,6 @@ static int32_t uart_worker(void *context) {
               if (0 == strncmp(LED_CMD, uart->app->command_queue[uart->app->command_index], strlen(LED_CMD))) {
                 evil_portal_uart_tx((uint8_t *)(LED_CMD), strlen(LED_CMD));
                 evil_portal_uart_tx((uint8_t *)("\n"), 1);
-
-                furi_assert(app);
               }
 
               uart->app->command_index = 0;
