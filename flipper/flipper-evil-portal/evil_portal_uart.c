@@ -77,13 +77,6 @@ static int32_t uart_worker(void *context) {
                 evil_portal_uart_tx((uint8_t *)("\n"), 1);
 
                 furi_assert(app);
-
-                // Views
-                view_dispatcher_remove_view(app->view_dispatcher, Evil_PortalAppViewVarItemList);
-                view_dispatcher_remove_view(app->view_dispatcher, Evil_PortalAppViewConsoleOutput);
-
-                text_box_free(app->text_box);
-                furi_string_free(app->text_box_store);
               }
 
               uart->app->command_index = 0;
